@@ -22,9 +22,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.colors import Normalize
 
-# ─────────────────────────────────────────────
 # Geometry (meters)
-# ─────────────────────────────────────────────
 Lx = 0.06     # width  (x-direction)
 Ly = 0.020    # height (y-direction)
 
@@ -35,25 +33,22 @@ ny = 41
 dx = Lx / (nx - 1)
 dy = Ly / (ny - 1)
 
-# ─────────────────────────────────────────────
 # Material properties (graphite/aluminium composite-like)
-# ─────────────────────────────────────────────
+
 rho   = 2200.0        # kg/m³
 cp    = 900.0         # J/kg·K
 k     = 1.0           # W/m·K
 alpha = k / (rho * cp)
 
-# ─────────────────────────────────────────────
 # Operating conditions
-# ─────────────────────────────────────────────
+
 qdot  = 2.0e4    # W/m³  internal heat generation
 h     = 8.0      # W/m²·K convective cooling coefficient
 T_inf = 298.15   # K  ambient temperature
 T0    = 298.15   # K  initial temperature
 
-# ─────────────────────────────────────────────
 # Stable time step (0.45 safety factor)
-# ─────────────────────────────────────────────
+
 dt_stable = 1.0 / (2 * alpha * (1/dx**2 + 1/dy**2))
 dt = 0.45 * dt_stable
 
@@ -148,9 +143,9 @@ def step_ftcs_convective(T, alpha, dx, dy, dt, h, k, T_inf, q_over_rhocp):
     return Tnew
 
 
-# ─────────────────────────────────────────────
+
 # Run simulation — collect frames for animation
-# ─────────────────────────────────────────────
+
 T             = np.full((ny, nx), T0, dtype=float)
 t_end         = 50.0
 q_over_rhocp  = qdot / (rho * cp)
@@ -187,9 +182,8 @@ for n in range(nsteps + 1):
 print(f"Collected {len(frames)} animation frames.")
 print(f"Static snapshots at: {[f'{t:.1f}s' for t in times_static]}")
 
-# ─────────────────────────────────────────────
 # Static contour plots (5 snapshots)
-# ─────────────────────────────────────────────
+
 x = np.linspace(0, Lx, nx)
 y = np.linspace(0, Ly, ny)
 
@@ -203,9 +197,8 @@ for t, Tplot in zip(times_static, Ts_static):
     plt.tight_layout()
     plt.show()
 
-# ─────────────────────────────────────────────
 # Build & save animated GIF
-# ─────────────────────────────────────────────
+
 T_min = T0
 T_max = max(f[1].max() for f in frames)
 
