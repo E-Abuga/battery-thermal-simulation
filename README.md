@@ -1,5 +1,7 @@
 # Battery Thermal Management — 2D Finite Difference Simulation
 
+![Battery Thermal Simulation](battery_thermal.gif)
+
 This project simulates the transient temperature distribution across a 2D 
 lithium-ion battery cross-section using the Forward Time Centered Space (FTCS) 
 explicit finite difference method, implemented from scratch in Python.
