@@ -6,7 +6,6 @@ Created on Wed May 06 17:46:30 2026
 @author: christopherabuga
 
 Battery Thermal Simulation — 2D Finite Difference Method (FTCS)
-with Animation Export
 
 Simulates transient heat conduction across a 2D lithium-ion battery
 cross-section with internal heat generation and convective cooling
@@ -14,7 +13,7 @@ on all four boundaries.
 
 Outputs:
     - 5 static contour snapshots
-    - battery_thermal.gif (animated temperature evolution)
+    - animated temperature evolution
 """
 
 import numpy as np
